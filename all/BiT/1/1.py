@@ -15,7 +15,7 @@ def countingSort(A,B,k):
         C[A[i]]+=1      
     for i in range(1,k+1):          #gwarancja stabilności teraz na i-tej pozycji jest zapisane ile jest elementow =>i
         C[i]+=C[i-1]        
-    for i in range(n-1,0,-1):       #spisywanie od końca z pomoca tablicy C, w przypadku kilku takich samych wartosci sa wpisywane 
+    for i in range(n-1,-1,-1):       #spisywanie od końca z pomoca tablicy C, w przypadku kilku takich samych wartosci sa wpisywane 
         B[C[A[i]]-1]=A[i]           #tez od konca z pierwsza wpisana na ostatnie mozliwe miejsce
         C[A[i]]-=1
     return B
@@ -60,5 +60,5 @@ def bucketSort(A,n):
             
     return output
         
-print(bucketSort(A,len(A)))
+# print(bucketSort(A,len(A)))
 

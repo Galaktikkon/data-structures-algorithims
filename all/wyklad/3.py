@@ -41,4 +41,4 @@ A=['kra','art','ort','kot','kit','ati','kil']
 # oczekiwana złożoność - O(n)
 
 # Magiczne Piątki - wybór k-tego elementu w czasue O(n) bez ryzyka "ukwadratowienia"
-# A - tab  
+# A - tab 
