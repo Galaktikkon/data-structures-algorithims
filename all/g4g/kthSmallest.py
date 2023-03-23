@@ -1,5 +1,5 @@
 # kurwa
-
+# werjsa z heapem ehh
 def kthSmallest(arr, l, r, k):
     n=len(arr)
     '''
@@ -58,3 +58,42 @@ def kthSmallest(arr, l, r, k):
 A=[7, 10, 4, 20, 15]
 
 print(kthSmallest(A,0,len(A)-1,4))
+
+# wersja z selectem POG
+def kthSmallest(arr, l, r, k):
+    
+    '''
+    arr : given array
+    l : starting index of the array i.e 0
+    r : ending index of the array i.e size-1
+    k : find kth smallest element and return using this function
+    '''
+    
+    def partition(A,p,r):
+        
+        x=A[r]
+        
+        i=p-1
+        
+        for j in range(p,r):
+            if A[j]<=x:
+                i+=1
+                A[j],A[i]=A[i],A[j]
+                
+        A[r],A[i+1]=A[i+1],A[r]
+        
+        return i+1
+    
+    def select(A,l,r,k):
+        
+        q=partition(arr,l,r)
+    
+        if q+1==k:
+            return A[q]
+        
+        elif q+1>k:
+            return select(A,l,q-1,k)
+        elif q+1<k:
+            return select(A,q+1,r,k)
+    
+    return select(arr,l,r,k)

@@ -32,7 +32,7 @@ A=[1,3,4,2,56,7,6,2,4,5,1,3,2,6,4,3,2,6,64,3,2,4,7]
 
 quickSort(A,0,len(A)-1)
 
-print(A)
+# print(A)
 
 # ryzyko: 
 # przy algorytm może się ukwadratawiać, przy pechowych wyborach pivotu, a to może doprowadzić do zapchania stosu przy rekurencji
@@ -47,3 +47,31 @@ def quickSort(A,p,r):
         
         
 # STATYSTKI POZYCYJNE
+
+# zastosowanie funkcji partition do obliczania statystkyk pozycyjnych
+
+# k-ta statystyka pozycyjna, element A, który byłby na k-tej pozycji po posortowaniu, w szczególności:
+# select(A,0) = min(A)
+# select(A,len(A)-1) = max(A)
+# select(A,(len(A))/2) = mediana A
+# A=[1,3,"8",9,16]
+# A=[1,"4","7",20]
+
+# złożoność czasowa - O(n)
+
+def select(A,k,p,r):
+    
+    q=partition(A,p,r)
+    
+    if q==k:
+        return A[q]
+    
+    elif q>k:
+        return select(A,k,p,q-1)
+        
+    elif q<k:
+        return select(A,k,q+1,r)
+        
+A=[7, 10, 4, 20, 15]
+
+print(select(A,1,0,4))
