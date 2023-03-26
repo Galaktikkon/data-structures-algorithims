@@ -101,7 +101,7 @@ def sortAndMerge(T):
 def strong_string(T):
     n=len(T)
     reverseStrings(T)
-    # T=sorted(T,key=lambda x:len(x)) tu jest jakikolwiek dobrze zopymalizowany sort
+    quickSort(T,0,n-1)
     T=divArray(T)
     T=sortAndMerge(T)
     
@@ -117,8 +117,7 @@ def strong_string(T):
         i+=1
     return MaxLen
 
-T = ["pies", "mysz", "kot", "kogut", "tok", "seip", "kot"]
+# T = ["pies", "mysz", "kot", "kogut", "tok", "seip", "kot"]
 
-# print(strong_string(T))
 # # zmien all_tests na True zeby uruchomic wszystkie testy
 runtests( strong_string, all_tests=True )
