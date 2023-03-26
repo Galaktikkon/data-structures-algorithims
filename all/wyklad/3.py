@@ -82,9 +82,9 @@ def divIntoGroups(A):
     
     return output
 
-def partition(A,p,r):
+def partition(A,p,r,pivotIndex):
     
-    x=A[r] 
+    x=A[pivotIndex] 
            
     i=p-1 
     
@@ -96,14 +96,12 @@ def partition(A,p,r):
     
     return i+1 
 
-def select(A,k):
+def select(A,k,p,r):
     
-    p=0
-    r=len(A)-1
-    q=partition(A,p,r)
+    q=partition(A,p,r,r-1)
     
     if q==k:
-        return A[q]
+        return q
     
     elif q>k:
         return select(A,k,p,q-1)
@@ -113,21 +111,33 @@ def select(A,k):
 
 def findMedian(A):
     medians=[]
-    for i in range(A):
+    for i in range(len(A)):
         medians.append(A[i][len(A[i])//2])
     n=len(medians)
-    return select(medians,n/2)
+    return select(medians,n//2,0,n-1)
 
-def MagicFives(A,p,r):
+def MagicSelect(A,p,r,k):
+    A=A[p:r]
+    q=partition(A,p,r,findMedian(divIntoGroups(A)))
     
-    x=findMedian(A)
-           
-    i=p-1 
+    if q==k:
+        return A[q]
+    elif q>k:
+        return MagicSelect(A,p,q-1,k)
+    elif q<k:
+        return MagicSelect(A,q+1,r,k)
     
-    for j in range(p,r): 
-        if A[j]<=x:
-            i+=1 
-            A[j],A[i]=A[i],A[j] 
-    A[r],A[i+1]=A[i+1],A[r]
+def MagicFives(A,k):
+    return MagicSelect(A,0,len(A)-1,k)
+
+
+B=[i for i in range(101)]
+
+# print(MagicFives(B,99))
+
+for i in range(len(B)):
+    print(MagicFives(B,i),i)
+
+
     
     
