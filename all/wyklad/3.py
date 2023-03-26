@@ -137,7 +137,3 @@ B=[i for i in range(101)]
 
 for i in range(len(B)):
     print(MagicFives(B,i),i)
-
-
-    
-    

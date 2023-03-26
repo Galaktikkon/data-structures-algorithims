@@ -7,6 +7,7 @@ def strong_string(T):
     max_count=0
     
     for i in range(len(T)):
+        
         curr_count=0
         for j in range(len(T)):
             if T[i]==T[j] or T[i]==T[j][::-1]:
