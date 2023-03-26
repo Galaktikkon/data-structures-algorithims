@@ -101,7 +101,7 @@ def sortAndMerge(T):
 def strong_string(T):
     n=len(T)
     reverseStrings(T)
-    T=sorted(T,key=lambda x:len(x))
+    # T=sorted(T,key=lambda x:len(x)) tu jest jakikolwiek dobrze zopymalizowany sort
     T=divArray(T)
     T=sortAndMerge(T)
     
