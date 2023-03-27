@@ -20,7 +20,7 @@ def quickSort(A,p,r):
     while p<r:
        q=partition(A,p,r)
        quickSort(A,p,q-1) 
-       p=q+1   
+       p=q+1
 
 def convert(A,index):
     return ord(A[index])-ord('a')
@@ -101,9 +101,13 @@ def sortAndMerge(T):
 def strong_string(T):
     n=len(T)
     reverseStrings(T)
-    quickSort(T,0,n-1)
+    # quickSort(T,0,n-1)
+    T=sorted(T,key=lambda x: len(x))
+    # print(T)
     T=divArray(T)
+    # print(T)
     T=sortAndMerge(T)
+    # print(T)
     
     currMax,MaxLen=1,1
 
