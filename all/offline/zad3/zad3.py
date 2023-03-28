@@ -20,7 +20,7 @@ def quickSort(A,p,r):
     while p<r:
        q=partition(A,p,r)
        quickSort(A,p,q-1) 
-       p=q+1   
+       p=q+1
 
 def convert(A,index):
     return ord(A[index])-ord('a')
@@ -101,9 +101,13 @@ def sortAndMerge(T):
 def strong_string(T):
     n=len(T)
     reverseStrings(T)
-    T=sorted(T,key=lambda x:len(x))
+    # quickSort(T,0,n-1)
+    T=sorted(T,key=lambda x: len(x))
+    # print(T)
     T=divArray(T)
+    # print(T)
     T=sortAndMerge(T)
+    # print(T)
     
     currMax,MaxLen=1,1
 
@@ -117,8 +121,7 @@ def strong_string(T):
         i+=1
     return MaxLen
 
-T = ["pies", "mysz", "kot", "kogut", "tok", "seip", "kot"]
+# T = ["pies", "mysz", "kot", "kogut", "tok", "seip", "kot"]
 
-# print(strong_string(T))
 # # zmien all_tests na True zeby uruchomic wszystkie testy
 runtests( strong_string, all_tests=True )
