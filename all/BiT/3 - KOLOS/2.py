@@ -36,7 +36,7 @@ def merge(A,left,mid,right,index):
         A[sortIndex]=R[j]
         j+=1
         sortIndex+=1
-        
+
 def mergeSort(A,left,right,index):
     if left<right:
         mid=(left+right)//2    
@@ -49,7 +49,7 @@ def convert(A):
     n=len(A)
     for i in range(n):
         A[i]=(A[i],i)
-        
+   
 def kChaotic(A):
     n=len(A)
     convert(A)
