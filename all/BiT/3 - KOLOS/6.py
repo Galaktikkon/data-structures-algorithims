@@ -1,0 +1,1 @@
+# tutaj rozklad prawopodobieństwa, który był baitem, bo dostosowywanie bucketów mogło wyjebać złożoność w kosmos
