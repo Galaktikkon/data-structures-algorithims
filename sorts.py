@@ -133,3 +133,4 @@ def mergeSort(A,left,right,index):
         mergeSort(A,mid+1,right,index)
         merge(A,left,mid,right,index)
 
+import collections

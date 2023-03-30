@@ -46,6 +46,7 @@ def bucketSort(A,n):
     
     for num in A:
         normNum=num/norm # znormalizowana wartośc
+        print(normNum,normNum*n)
         bucketInd=int(n*normNum -1 if normNum*n>0 else 0) # wybór kubełka
         buckets[bucketInd].append(num) 
         
@@ -62,3 +63,6 @@ def bucketSort(A,n):
         
 # print(bucketSort(A,len(A)))
 
+T=[1.1,2.4,1.5,3.6,2.1,2.0]
+
+print(bucketSort(T,len(T)))
