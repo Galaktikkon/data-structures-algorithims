@@ -53,6 +53,7 @@ def convert(A):
 def kChaotic(A):
     n=len(A)
     convert(A)
+    print(A)
     mergeSort(A,0,n-1,0)
     
     k=0
@@ -64,4 +65,3 @@ def kChaotic(A):
 A=[7,2,3,4,5,6,1]
 
 print(kChaotic(A))
-    

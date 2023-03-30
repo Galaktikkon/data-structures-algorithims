@@ -41,7 +41,8 @@ def prettySort(T):
     
     for el in T:
         B.append(convert(el))
-        
+    
+    print(B)
     T=countingSort(B,T,0,0)
     T=countingSort(B,T,1,1)
     
