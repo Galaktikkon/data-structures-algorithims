@@ -26,4 +26,3 @@ def heapSort(A):
     for i in range(n-1,0,-1):
         A[0],A[i]=A[i],A[0]
         heapify(A,0,i)
-        

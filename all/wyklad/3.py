@@ -130,7 +130,6 @@ def MagicSelect(A,p,r,k):
 def MagicFives(A,k):
     return MagicSelect(A,0,len(A)-1,k)
 
-
 B=[i for i in range(101)]
 
 # print(MagicFives(B,99))
