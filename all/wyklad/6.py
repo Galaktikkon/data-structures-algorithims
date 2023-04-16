@@ -111,7 +111,7 @@ def DFS(G,s):
     
     time=0
     
-    for i in range(n):
+    for i in range(n): #przeszukanie całego grafu, jeśli zechemy z jednego wierzchołka odpalić DFS to tylko z nirgo odpalamy!
        if not visited[i]:
            DFSVisit(G,i)
            
