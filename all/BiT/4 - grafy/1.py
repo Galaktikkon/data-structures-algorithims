@@ -14,7 +14,7 @@ def isCyclic(G,s):
     Q.append(s)
     
     while Q:
-        u=Q.pop()
+        u=Q.popleft()
         for v in G[u]:
             if visited[v] and parent[v]!=u and parent[v]!=None:
                 return True

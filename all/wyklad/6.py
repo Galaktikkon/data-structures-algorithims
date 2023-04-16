@@ -62,7 +62,7 @@ def BFS(G,s):
     Q.append(s)
     
     while Q:
-        u=Q.pop()
+        u=Q.popleft()
         for v in G[u]:
             if visited[v]==False:
                 visited[v]=True

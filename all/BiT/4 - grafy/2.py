@@ -20,7 +20,7 @@ def message(G,s):
     
     
     while Q:
-        u,w=Q.pop()
+        u,w=Q.popleft()
         d[w]+=1 # tablica, ktora dla danego dnia przechowuje ile zostalo rozeslanych wiadomosci
         if d[w]>mess: # jezeli pewnego dnia rozeslano wiecej niz aktualnie jest najwiecej to podmiana wszystkiego
             mess=d[w]

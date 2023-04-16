@@ -18,23 +18,24 @@ def safe(T,p,s):
     d=[0 for _ in range(n)]
     d[s]=0
     entries=[p]
-    Q.append(s)
+    Q.appendleft(s)
     while Q:
         u=Q.pop()
+        if u<1000: print(u)
         for v in T:
-            # if u==p:
-            #     # while parent[u]!=0:
-            #     #     entries.append(parent[u])
-            #     #     u=parent[u]
-            #     # entries.reverse()
-            #     return d[p]
+            if u==p:
+                while parent[u]!=0:
+                    entries.append(parent[u])
+                    u-=parent[u]
+                entries.reverse()
+                return entries
             if visited[(v+u)%n]==False:
                 visited[(v+u)%n]=True
                 d[(u+v)%n]=d[u]+1
-                parent[(v+u)%n]=u
-                Q.append((v+u)%n)
+                parent[(v+u)%n]=v
+                Q.appendleft((v+u)%n)
                 
-    return d[p]
+    return None
 
 
 T=[13,14]

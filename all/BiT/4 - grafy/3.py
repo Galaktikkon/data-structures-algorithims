@@ -72,7 +72,7 @@ def shortestPath(T):
     path=[(n-1,n-1)]
     pathSign=0
     while Q:
-        i,j=Q.pop()
+        i,j=Q.popleft()
         for v,w in [(0,1),(1,0),(0,-1),(-1,0)]:
             if 0<=i+v<n and 0<=j+w<n:
                 if visited[i+v][j+w]==False and T[i+v][j+w]=="L":
