@@ -17,14 +17,13 @@ def safe(T,p,s):
     parent[s]=None
     d=[0 for _ in range(n)]
     d[s]=0
-    entries=[p]
+    entries=[]
     Q.appendleft(s)
     while Q:
         u=Q.pop()
-        if u<1000: print(u)
         for v in T:
             if u==p:
-                while parent[u]!=0:
+                while u>0:
                     entries.append(parent[u])
                     u-=parent[u]
                 entries.reverse()
