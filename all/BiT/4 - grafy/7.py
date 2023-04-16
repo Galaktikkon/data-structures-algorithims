@@ -3,6 +3,7 @@
 # Na mapie sa również drogi (każda długości 1), które łączą dom z domem, albo dom ze sklepem.
 # Naszym zadaniem jest, dla każdego domu, znaleźć odległość do najbliższego sklepu.
 
+# Rozwiązanie: puszczamy BFS'a na wszystkich sklepach
 from random import randint
 from collections import deque
 def createCity(n):
