@@ -16,7 +16,7 @@ def isCyclic(G,s):
     while Q:
         u=Q.popleft()
         for v in G[u]:
-            if visited[v] and parent[v]!=u and parent[v]!=None:
+            if visited[v] and parent[u]!=v:
                 return True
             if visited[v]==False:
                 visited[v]=True
@@ -26,14 +26,14 @@ def isCyclic(G,s):
                 
     return False
 
-G=[[1,2],[0,2],[0,1]]
+G=[[],[2],[1,3],[2]]
 
-# print(isCyclic(G,0))
+print(isCyclic(G,0))
 
 def isCyclicDFS(G,s):
     
     def DFSVisit(G,i):
-        nonlocal time, visited, parent,cyclic
+        nonlocal time, visited, parent, cyclic
         time+=1
         visited[i]=True
         for v in G[i]:

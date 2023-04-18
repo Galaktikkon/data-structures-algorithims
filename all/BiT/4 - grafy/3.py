@@ -1,5 +1,6 @@
 from random import randint
 from collections import deque
+
 # Dana jest dwuwymiarowa tablica N x N, w której każda komórka ma wartość "W" - reprezentującą wodę lub "L" - ląd.
 # Grupę komórek wody połączyonych ze sobą brzegami nazywamy jeziorem.
 # a) Policz, ile jest jezior w tablicy

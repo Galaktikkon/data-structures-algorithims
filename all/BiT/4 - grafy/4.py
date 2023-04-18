@@ -20,7 +20,6 @@ def DFS(G,a,b):
             
     return visited[b]
 
-
 def section(T,a,b):
     m=-1
     for i in T: m=max(m,i[1])
