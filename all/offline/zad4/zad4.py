@@ -49,11 +49,11 @@ def BFSPath(G,s,t,p,q):
 def longer( G, s, t ):
     # tu prosze wpisac wlasna implementacje
     path=BFSPath(G,s,t,-1,-1)
-    lenght=len(path)-1
+    length=len(path)-1
     i,j=0,1
-    while j<=lenght:
+    while j<=length:
         poss=len(BFSPath(G,s,t,path[j],path[i]))
-        if poss-1>lenght or poss==0:
+        if poss-1>length or poss==0:
             return path[i],path[j]
         j+=1
         i+=1
