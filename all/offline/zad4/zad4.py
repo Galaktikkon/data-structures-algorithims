@@ -58,5 +58,6 @@ def longer( G, s, t ):
         j+=1
         i+=1
     return None
+
 # zmien all_tests na True zeby uruchomic wszystkie testy
 runtests( longer, all_tests = True )
