@@ -9,7 +9,9 @@
 
 # uwaga! usunięcie krawędzi jest realizowane przez nierozważanie w funkcji BFSPath połączenia p-q, gdzie p,q to krawędź usuwana.
 
-# Szacowana złożoność: O(k*(V+E)), gdzie 'k' to dlugość najktrótszej ścieżki.
+# Szacowana złożoność czasowa: O(k*(V+E)), gdzie 'k' to dlugość najktrótszej ścieżki.
+# Szacowana złożoność pamięciowa O(V+E+k), gdzie 'k' to długość najkrótszej ścieżki.
+
 
 from zad4testy import runtests
 from collections import deque
@@ -19,8 +21,6 @@ def BFSPath(G,s,t,p,q):
     n=len(G)
     visited=[False for _ in range(n)]
     parent=[None for _ in range(n)]
-    d=[-1 for _ in range(n)]
-    d[s]=0
     path=[]
     Q.append(s)
     while Q:
@@ -37,12 +37,10 @@ def BFSPath(G,s,t,p,q):
                     if v!=q:
                         parent[v]=u
                         visited[v]=True
-                        d[v]=d[u]+1
                         Q.append(v)
                 else:
                     parent[v]=u
                     visited[v]=True
-                    d[v]=d[u]+1
                     Q.append(v)
     return path
 
