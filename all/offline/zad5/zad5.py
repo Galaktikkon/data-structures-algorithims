@@ -1,3 +1,18 @@
+# Marek Małek, 414880
+# Algorytm przekształca dane wejściowe w listę sąsiedztwa oraz tworzy na podstawie tablicy anomalii (S), tablicę A typu bool, która zawiera 
+# informację czy dana planeta znajduje się w zagięciu czasoprzestrzennym. Następnie wywołuje algorytm Dijkstry z dodatkowymi parametrami
+# S i A. Ma to na celu wykorzystanie faktu, że jeżeli dana droga wchodzi w anomalię, to wchodzi w anomalię dokładnie raz, 
+# tzn. maksymalna liczba skoków czasoprzetrzennych wynosi 1, inaczej droga byłaby nieefektywna, bo przechodząc drugi raz jakąś anomalią w 
+# innym kierunku, mogliśmy za pierwszym razem wybrać tę drogę, czyli istnieje optymalniejsza ścieżka. Realizowane jest to przez flagę, która 
+# pozwala na skorzystanie z anomalii tylko raz. W przypadku, gdy trafimy do planety w zagięciu (A[v]=True), patrzymy na inne planety w 
+# zagięciu (należące do S) i rozważamy drogi uzyskane przez skoki do tych planet. Na końcu algorytmu korzystamy z tablicy d, która zawiera 
+# odległości od wierzchołka "a" i sprawdzamy czy istnieje droga do "b", jeśli tak to ją zwracamy, inaczej zwracamy None.
+
+# Szacowana złożoność obliczeniowa O(S + E + ElogV) 
+# - gdzie S liczba anomalii, E to liczba wejściowych krawędzi, a V to liczba wierzchołków grafu.
+
+# Szacowana złożoność pamięciowa O(S + V + E) 
+# - gdzie S liczba anomalii, E to liczba wejściowych krawędzi, a V to liczba wierzchołków grafu.
 from zad5testy import runtests
 from math import inf
 from queue import PriorityQueue
