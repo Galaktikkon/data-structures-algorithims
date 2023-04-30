@@ -1,6 +1,6 @@
 from zad5testy import runtests
 
-def Dijkstra(G,s):
+def Dijkstra(G,s,S):
     def relax(v,c,d,u):
         if d[v]>d[u]+c:
             d[v]=d[u]+c
@@ -13,9 +13,15 @@ def Dijkstra(G,s):
     Q=PriorityQueue()
     d[s]=0
     Q.put((d[s],s))
+    flag=False
     while not Q.empty():
         w,u=Q.get()
         if w==d[u]:
+            if not flag and u in S:
+                for v in S:
+                    if relax(v,0,d,u):
+                        Q.put((d[v],v))
+                flag=True
             for v,c in G[u]:
                 if relax(v,c,d,u):
                     Q.put((d[v],v))
@@ -29,12 +35,12 @@ def spacetravel( n, E, S, a, b ):
         G[E[i][0]].append((E[i][1],E[i][2]))
         G[E[i][1]].append((E[i][0],E[i][2]))
     # print(G)
-    for i in range(len(S)):
-        for j in range(len(S)):
-            if j!=i:
-                G[S[i]].append((S[j],0))
+    # for i in range(len(S)):
+    #     for j in range(len(S)):
+    #         if j!=i:
+    #             G[S[i]].append((S[j],0))
     
-    dist=Dijkstra(G,a)
+    dist=Dijkstra(G,a,S)
     return dist[b] if dist[b]!=inf else None
 
 # zmien all_tests na True zeby uruchomic wszystkie testy
