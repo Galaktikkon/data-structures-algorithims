@@ -37,6 +37,6 @@ def safe(T,p,s):
     return None
 
 
-T=[13,14]
+T=[13,14,40]
 
-print(safe(T,40,0))
+print(safe(T,2137,0))
