@@ -101,7 +101,7 @@ def DFS(G,s):
         time+=1 # czas przetworzenia i-tego wierzchołka
         topoList.append(i)
         
-        
+
     n=len(G)
     topoList=[]
     visited=[False for _ in range(n)]
