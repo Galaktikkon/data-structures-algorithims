@@ -74,7 +74,7 @@ def BFS(G,s):
 
 G=[[2,3,4],[2,4,5],[0,1],[4,0,6],[0,1,3,5],[1,4],[3]]
 
-# print(BFS(G,0)[0])
+print(BFS(G,0)[0])
 
 
 # PRZEJŚCIE GRAFU W GŁĄB - DFS (depth-first search) - O(V+E) - reprezentacja listowa, O(V^2) - reprezentacja macierzowa
@@ -133,7 +133,7 @@ def TopologicalSort(G):
     # implementacja powyżej, po prostu zmodyfikowany DFS
     pass
 
-Tasks=[[1,2],[2,4],[],[],[3,6],[4],[]]
+
 
 print(DFS(Tasks,0))
 
