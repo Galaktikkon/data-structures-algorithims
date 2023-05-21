@@ -17,6 +17,16 @@ def create_graph(M):
     return G
 
 
+M = [[0, 1, 3],  # 0
+     [2, 4],  # 1
+     [0, 2],  # 2
+     [3],  # 3
+     [3, 2]]
+
+for i in create_graph(M):
+    print(i)
+
+
 def bfs(G, a, b):
     n = len(G)
     s = a
@@ -78,4 +88,4 @@ def binworker(M):
 
 
 # zmien all_tests na True zeby uruchomic wszystkie testy
-runtests(binworker, all_tests=False)
+# runtests(binworker, all_tests=False)
