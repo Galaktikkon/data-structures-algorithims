@@ -1,33 +1,39 @@
+# Marek Małek, 414880
+
+# Algorytm opiera się na wykorsztaniu metody forda fulkersona do znalezienia największego skojarzenia w grafie - rozwiązania.
+# Stworzony jest graf w dwóch reprezentacjach - macierzowej i listowej (z ktorej usuwamy i dodajemy krawędzie)
+
 from zad6testy import runtests
+
+
+def create_matrix(M):
+    n = len(M)
+    G = [[0 for _ in range(2*n+2)] for _ in range(2*n+2)]
+    for u in range(n):
+        for v in M[u]:
+            G[u][n+v] = 1
+    for i in range(n):
+        G[2*n][i] = 1
+    for i in range(n):
+        G[n+i][2*n+1] = 1
+
+    return G
 
 
 def create_graph(M):
     n = len(M)
-    G = [[0 for _ in range(n+2)] for _ in range(n+2)]
-    for u in range(n):
-        for v in range(len(M[u])):
-            for x in range(n):
-                for y in range(len(M[x])):
-                    if M[u][v] == M[x][y] and u != x:
-                        G[u][x] = 1
+    G = [[] for _ in range(2*n+2)]
     for i in range(n):
-        G[n][i] = 1
+        for j in range(len(M[i])):
+            G[i].append(M[i][j]+n)
     for i in range(n):
-        G[i][n+1] = 1
+        G[2*n].append(i)
+    for i in range(n):
+        G[i+n].append(2*n+1)
     return G
 
 
-M = [[0, 1, 3],  # 0
-     [2, 4],  # 1
-     [0, 2],  # 2
-     [3],  # 3
-     [3, 2]]
-
-for i in create_graph(M):
-    print(i)
-
-
-def bfs(G, a, b):
+def bfs(G, a, b, M):
     n = len(G)
     s = a
     t = b
@@ -37,7 +43,7 @@ def bfs(G, a, b):
     parent = [None for _ in range(n)]
     path = []
     Q = deque()
-    Q.append(a)
+    Q.append(s)
     while Q:
         u = Q.popleft()
         if u == t:
@@ -45,11 +51,11 @@ def bfs(G, a, b):
                 path.append(t)
                 t = parent[t]
             return path[::-1]
-        for i in range(n):
-            if not visited[i] and G[u][i]:
-                visited[i] = True
-                parent[i] = u
-                Q.append(i)
+        for v in M[u]:
+            if not visited[v] and G[u][v]:
+                visited[v] = True
+                parent[v] = u
+                Q.append(v)
 
     return path[::-1]
 
@@ -61,31 +67,34 @@ def cap(G, path):
     return s
 
 
-def update(G, path):
+def update(G, path, M):
     w = cap(G, path)
     for i in range(len(path)-1):
         G[path[i]][path[i+1]] -= w
+        M[path[i]].remove(path[i+1])
         G[path[i+1]][path[i]] += w
+        M[path[i+1]].append(path[i])
 
 
-def FordFulkerson(G, s, t):
+def FordFulkerson(G, s, t, M):
     from copy import deepcopy
     flow = 0
-    F = deepcopy(G)
-    path = bfs(F, s, t)
+    path = bfs(G, s, t, M)
     while path:
-        flow += cap(F, path)
-        update(F, path)
-        path = bfs(F, s, t)
+        flow += cap(G, path)
+        update(G, path, M)
+        path = bfs(G, s, t, M)
     return flow
 
 
 def binworker(M):
     # tu prosze wpisac wlasna implementacje
-    G = create_graph(M)
     n = len(M)
-    return FordFulkerson(G, n, n+1)
+    G = create_matrix(M)
+    F = create_graph(M)
+
+    return FordFulkerson(G, 2*n, 2*n+1, F)
 
 
 # zmien all_tests na True zeby uruchomic wszystkie testy
-# runtests(binworker, all_tests=False)
+runtests(binworker, all_tests=True)
