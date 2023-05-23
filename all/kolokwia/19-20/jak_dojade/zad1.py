@@ -1,14 +1,6 @@
 from zad1testy import runtests
 
 
-def relax(parent, d, v, u, weight):
-    if d[v] > d[u]+weight:
-        d[v] = d[u]+weight
-        parent[v] = u
-        return True
-    return False
-
-
 def dijkstra_matrix(G, P, s, t, f):
     from math import inf
     n = len(G)
