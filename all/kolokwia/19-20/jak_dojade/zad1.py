@@ -14,6 +14,8 @@ def dijkstra_matrix(G, P, s, t, f):
     F[s] = f
     Q = [(s, 0, f)]
     while Q:
+        print(Q)
+        print(parent)
         w = inf
         fuel = -inf
         u = None
@@ -24,19 +26,19 @@ def dijkstra_matrix(G, P, s, t, f):
                     fuel = Q[i][2]
                     u = Q[i][0]
 
-        Q.remove((u, w, fuel))
+        Q.remove((u, w, fuel))  # type: ignore
 
         for v in range(n):
             if G[u][v] != -1 and G[u][v] <= fuel:
-                if d[v] > d[u] + G[u][v] or F[u] - G[u][v] > F[v]:
-                    d[v] = d[u] + G[u][v]
+                if d[v] > d[u] + G[u][v] or F[u] - G[u][v] > F[v]:  # type: ignore
+                    d[v] = d[u] + G[u][v]  # type: ignore
                     parent[v] = u
 
                     if gas_stations[v]:
-                        Q.append((v, d[v], fuel))
-                        F[v] = fuel
+                        Q.append((v, d[v], fuel))  # type: ignore
+                        F[v] = fuel  # type: ignore
                     else:
-                        Q.append((v, d[v], fuel-G[u][v]))
+                        Q.append((v, d[v], fuel-G[u][v]))  # type: ignore
                         F[v] = fuel-G[u][v]
 
     return parent, d
@@ -55,4 +57,16 @@ def jak_dojade(G, P, d, a, b):
     return path[::-1]
 
 
-runtests(jak_dojade)
+G = [
+    [-1, 2, -1, -1, -1, -1],
+    [2, -1, 5, 7, 4, -1],
+    [-1, 5, -1, 1, -1, 4],
+    [-1, 7, 1, -1, -1, -1],
+    [-1, 4, -1, -1, -1, 8],
+    [-1, -1, 4, -1, 8, -1]
+]
+P = [3]
+
+print(jak_dojade(G, P, 10, 0, 5))
+
+# runtests(jak_dojade)
