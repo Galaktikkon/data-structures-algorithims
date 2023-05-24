@@ -15,7 +15,6 @@ def dijkstra_matrix(G, P, s, t, f):
     Q = [(s, 0, f)]
     while Q:
         print(Q)
-        print(parent)
         w = inf
         fuel = -inf
         u = None
@@ -26,19 +25,19 @@ def dijkstra_matrix(G, P, s, t, f):
                     fuel = Q[i][2]
                     u = Q[i][0]
 
-        Q.remove((u, w, fuel))  # type: ignore
+        Q.remove((u, w, fuel))
 
         for v in range(n):
             if G[u][v] != -1 and G[u][v] <= fuel:
-                if d[v] > d[u] + G[u][v] or F[u] - G[u][v] > F[v]:  # type: ignore
-                    d[v] = d[u] + G[u][v]  # type: ignore
+                if d[v] > d[u] + G[u][v] or F[u] - G[u][v] > F[v]:
+                    d[v] = d[u] + G[u][v]
                     parent[v] = u
 
                     if gas_stations[v]:
-                        Q.append((v, d[v], fuel))  # type: ignore
-                        F[v] = fuel  # type: ignore
+                        Q.append((v, d[v], fuel))
+                        F[v] = fuel
                     else:
-                        Q.append((v, d[v], fuel-G[u][v]))  # type: ignore
+                        Q.append((v, d[v], fuel-G[u][v]))
                         F[v] = fuel-G[u][v]
 
     return parent, d
@@ -50,23 +49,27 @@ def jak_dojade(G, P, d, a, b):
     if parent[b] is None:
         return None
     path = []
-    while b != a:
+    while parent[b] != None:
         path.append(b)
         b = parent[b]
     path.append(a)
     return path[::-1]
 
 
-G = [
-    [-1, 2, -1, -1, -1, -1],
-    [2, -1, 5, 7, 4, -1],
-    [-1, 5, -1, 1, -1, 4],
-    [-1, 7, 1, -1, -1, -1],
-    [-1, 4, -1, -1, -1, 8],
-    [-1, -1, 4, -1, 8, -1]
-]
-P = [3]
+# P = [3]
 
-print(jak_dojade(G, P, 10, 0, 5))
+
+# def matrix(E, n):
+#     G = [[-1 for _ in range(n)] for _ in range(n)]
+#     for u, v, c in E:
+#         G[u][v] = G[v][u] = c
+#     return G
+
+
+# E = [(0, 1, 2), (1, 2, 5), (1, 4, 4), (1, 3, 7),
+#      (2, 3, 1), (2, 5, 1), (4, 5, 8)]
+# G = matrix(E, 6)
+
+# print(jak_dojade(G, P, 10, 0, 5))
 
 # runtests(jak_dojade)
