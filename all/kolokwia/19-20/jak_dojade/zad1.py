@@ -14,8 +14,8 @@ def dijkstra_matrix(G, P, s, t, f):
     F[s] = f
     Q = [(s, 0, f)]
     while Q:
-        print(Q)
-        print(parent)
+        # print(Q)
+        # print(parent)
         w = inf
         fuel = -inf
         u = None
@@ -25,7 +25,7 @@ def dijkstra_matrix(G, P, s, t, f):
                     w = Q[i][1]
                     fuel = Q[i][2]
                     u = Q[i][0]
-
+        # print(u, w, fuel, "-pop")
         Q.remove((u, w, fuel))  # type: ignore
 
         for v in range(n):
@@ -40,6 +40,8 @@ def dijkstra_matrix(G, P, s, t, f):
                     else:
                         Q.append((v, d[v], fuel-G[u][v]))  # type: ignore
                         F[v] = fuel-G[u][v]
+        if u == t:
+            break
 
     return parent, d
 
@@ -67,6 +69,14 @@ G = [
 ]
 P = [3]
 
-print(jak_dojade(G, P, 10, 0, 5))
+G2 = [
+    [-1, 2, -1, -1, -1],
+    [-1, -1, 1, -1, 3],
+    [-1, -1, -1, 1, -1],
+    [-1, 1, -1, -1, -1],
+    [-1, -1, -1, -1, -1]
+]
 
-# runtests(jak_dojade)
+print(jak_dojade(G2, P, 10, 0, 4))
+
+runtests(jak_dojade)
