@@ -1,2 +1,4 @@
 /check
-_pycache_
+__pycache__
+*.pyo
+*.pyc
