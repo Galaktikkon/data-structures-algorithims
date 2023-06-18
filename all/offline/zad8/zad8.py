@@ -1,3 +1,15 @@
+# Marek Małek, 414880
+
+# Rozwiązanie zachłanne. Na początku przeprowadzamy konwersję danych, aby zredukować problem do jednej tablicy o rozmiarze m.
+# Na każdym polu jest rozmiar wpisany rozmiar plamy (tj. ile ropy można z niej pozyskać). Jeśli plama zajmuje tez inne miejsce na drodze,
+# to jej pojemność jest wstawiamy tylko w najwcześniejszym polu, które ma do niej dostep, zapobiega to wielokrotnemu pozyskiwaniu tej
+# samej ropy objetości ropy z kilku miejsc, a de facto tej samej plamy. Do konwersji wykorzystujemy algorytm dfs (klasyczny problem z mapą
+# i jeziorami). Podejscie zachlanne polega na wzięciu na początku ropy z pola, na którym stoimy (musimy je wziąć, żeby móc się poruszyć),
+# a następnie bierzemy zawsze największą możliwą plamę w zasięgu (do tego wykorzystujemy kolejkę priorytetową), jeśli skończyło nam się
+# paliwo, to chcemy wziąć kolejną największa plamę z tych, które już odwiedziliśmy.
+
+# Szacowana złożoność obliczeniowa O(mlogm), gdzie m to dlugość ścieżki.
+
 from zad8testy import runtests
 
 
@@ -24,23 +36,6 @@ def dfs(T):
         A[j] = fuel
 
     return A
-
-
-# T = [[1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1], [0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1], [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0], [
-#     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-# T2 = [[6, 0, 2, 0, 3, 0, 1, 0, 1, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-
-
-# def printmap(T):
-#     for i in T:
-#         print(i)
-#     print()
-#     print(dfs(T))
-
-
-# printmap(T)
-# printmap(T2)
 
 
 def plan(T):
