@@ -1,8 +1,8 @@
 # Marek Małek, 414880
 
 # Rozwiązanie zachłanne. Na początku przeprowadzamy konwersję danych, aby zredukować problem do jednej tablicy o rozmiarze m.
-# Na każdym polu jest rozmiar wpisany rozmiar plamy (tj. ile ropy można z niej pozyskać). Jeśli plama zajmuje tez inne miejsce na drodze,
-# to jej pojemność jest wstawiamy tylko w najwcześniejszym polu, które ma do niej dostep, zapobiega to wielokrotnemu pozyskiwaniu tej
+# Na każdym polu jest wpisany rozmiar plamy (tj. ile ropy można z niej pozyskać). Jeśli plama zajmuje tez inne miejsce na drodze,
+# to jej pojemność wstawiamy tylko w najwcześniejszym polu, które ma do niej dostep, zapobiega to wielokrotnemu pozyskiwaniu tej
 # samej ropy objetości ropy z kilku miejsc, a de facto tej samej plamy. Do konwersji wykorzystujemy algorytm dfs (klasyczny problem z mapą
 # i jeziorami). Podejscie zachlanne polega na wzięciu na początku ropy z pola, na którym stoimy (musimy je wziąć, żeby móc się poruszyć),
 # a następnie bierzemy zawsze największą możliwą plamę w zasięgu (do tego wykorzystujemy kolejkę priorytetową), jeśli skończyło nam się
@@ -40,7 +40,6 @@ def dfs(T):
 
 def plan(T):
     # tu prosze wpisac wlasna implementacje
-    # print(T)
     from queue import PriorityQueue
     Q = PriorityQueue()
     A = dfs(T)
