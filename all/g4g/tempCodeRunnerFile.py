@@ -1,2 +1,4 @@
-s1 = 'GEBEOCFUFTSXDIXTIGSIEEHKCHZ'
-# s2 = 'DFLILRJQFNXZ'
+x = 5
+# y = 3
+# z = 2
+# n = 5
