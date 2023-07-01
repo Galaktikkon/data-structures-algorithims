@@ -60,7 +60,7 @@ def jak_dojade(G, P, d, a, b):
     return path[::-1]
 
 
-# P = [3]
+P = [3]
 
 
 # def matrix(E, n):
