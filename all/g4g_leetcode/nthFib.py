@@ -6,4 +6,4 @@ def nthFibonacci(n):
     return f2 % 1000000007
 
 
-print(nthFibonacci(3))
+print(nthFibonacci(10))

@@ -15,8 +15,8 @@ def longestCommonSubstr(S1, S2, n, m):
 
 S1 = "BCDYGHRE"
 S2 = "ABCDXGHRE"
-S1 = "ABC"
-S2 = "DEF"
+# S1 = "ABC"
+# S2 = "DEF"
 
 
 n = len(S1)
