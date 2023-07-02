@@ -1,5 +1,5 @@
 def JobScheduling(Jobs, n):
-    Jobs.sort(key=lambda x: x[2], reverse=1)
+    Jobs.sort(key=lambda x: x[1])
     i = 0
     time = n
     profit = 0
