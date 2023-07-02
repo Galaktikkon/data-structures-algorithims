@@ -13,8 +13,8 @@ def minCoins(coins, M, V):
         for j in range(M):
             if coins[j] <= V:
                 sub_res = rec_coins(coins, M, V-coins[j], F)
-                if sub_res != -1 and sub_res+1 < res:
-                    res = sub_res+1
+                if sub_res != -1:
+                    res = min(res, sub_res+1)
 
         F[V] = res if res != inf else -1
 
