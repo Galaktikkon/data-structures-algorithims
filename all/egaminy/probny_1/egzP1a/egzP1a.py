@@ -30,10 +30,10 @@ def titanic(W, M, D):
     T.remove(4)
     T.remove(19)
     m = len(T)
-    F = [[0 for _ in range(n+1)] for _ in range(m+1)]
+    F = [0 for _ in range(n+1)]
 
-    for i in range(1, m+1):
-        for j in range(1, n+1):
+    for i in range(1, n+1):
+        for j in range(i-4, i):
             pass
     return 0
 
