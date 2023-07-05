@@ -19,6 +19,9 @@ s2 = 'RELEIN'
 # s1 = 'AWITXYSJQZNCIPTTNC'
 # s2 = 'JTJHRTVKW'
 
+s1 = "ABCDGH"
+s2 = "ACDGHR"
+
 
 def print_res(F, s1, s2):
     print("      ", end='')

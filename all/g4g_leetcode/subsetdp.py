@@ -3,7 +3,7 @@ def isSubsetSum(N, arr, s):
     F = [[False for _ in range(s+1)] for _ in range(N)]
     for i in range(N):
         F[i][0] = True
-    F[0][arr[0]] = True
+    # F[0][arr[0]] = True
     for i in range(1, N):
         for j in range(s+1):
             if j-arr[i] >= 0:
