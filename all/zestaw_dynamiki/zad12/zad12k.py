@@ -27,7 +27,7 @@ def autostrada(T, k):
             F[i][j][k] = T[i]
             return F[i][j][k]
         else:
-            for p in range(i, j+1):
+            for p in range(i, j):
                 res = min(res, max(f(T, F, i, p, 1), f(T, F, p+1, j, k-1)))
             F[i][j][k] = res
 
