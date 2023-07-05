@@ -33,10 +33,10 @@ def check(s, t):
 s = "geek"
 t = "gesek"
 
-s = "gfg"
-t = "gfg"
+# s = "gfg"
+# t = "gfg"
 
-s = "dsa"
-t = "asd"
+# s = "dsa"
+# t = "asd"
 
 check(s, t)
