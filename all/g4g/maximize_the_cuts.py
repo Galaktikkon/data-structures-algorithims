@@ -12,19 +12,17 @@ def maximizeTheCuts(n, x, y, z):
             if F[c-1][F[c][i][1]][1] == 0:
                 F[c][i][0] += F[c-1][F[c][i][1]][0]
                 F[c][i][1] = 0
-            if F[c][i][0] < F[c-1][i][0]:
+            if F[c][i][0] < F[c-1][i][0] and F[c-1][i][1] == 0:
                 F[c][i][1] = F[c-1][i][1]
                 F[c][i][0] = F[c-1][i][0]
 
-    if not F[l][n][1]:
-        return F[l][n][0]
-    return 0
+    return F, F[l][n]
 
 
 x = 5
 y = 5
 z = 2
-n = 4
+n = 7
 
 # x = 5
 # y = 3
@@ -32,13 +30,13 @@ n = 4
 # n = 5
 
 
-# def check(x, y, z, n):
-#     F = maximizeTheCuts(n, x, y, z)
-#     for i in F[0]:
-#         print(i)
-#     print("maximized number of cuts: ", F[1])
+def check(x, y, z, n):
+    F = maximizeTheCuts(n, x, y, z)
+    for i in F[0]:
+        print(i)
+    print("maximized number of cuts: ", F[1])
 
 
-# check(x, y, z, n)
+check(x, y, z, n)
 
-print(maximizeTheCuts(n, x, y, z))
+# print(maximizeTheCuts(n, x, y, z))
