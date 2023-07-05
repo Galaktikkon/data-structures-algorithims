@@ -1,5 +1,4 @@
 from zad9ktesty import runtests
-from math import inf
 
 
 def prom(P, g, d):
@@ -26,9 +25,38 @@ def prom(P, g, d):
 
         return F[i][g][d]
 
-    rec_prom(F, P, g, d, 0)
+    count = rec_prom(F, P, g, d, 0)
+    i, a, b = 0, g, d
+    board_g = []
+    board_d = []
+    flag = -1
+    while i < len(P) and (a >= P[i] or P[i] <= b):
 
-    return F
+        if a < P[i]:
+            p1 = 0
+            p2 = 1
+        elif b < P[i]:
+            p1 = 1
+            p2 = 0
+        else:
+            p1 = rec_prom(F, P, a-P[i], b, i+1)
+            p2 = rec_prom(F, P, a, b-P[i], i+1)
+
+        if p1 > p2:
+            if i == count-1:
+                flag = 0
+            board_g += [i]
+            a -= P[i]
+        else:
+            if i == count-1:
+                flag = 1
+            board_d += [i]
+            b -= P[i]
+        i += 1
+    if flag:
+        return board_d
+    else:
+        return board_g
 
 
 T = [5, 6, 1, 3, 2, 4, 3, 5]
@@ -37,13 +65,14 @@ l2 = 10
 
 
 def check(T, l1, l2):
-    F = prom(T, l1, l2)
-    for i in range(len(F)):
-        print(i)
-        for j in F[i]:
-            print(j)
+    res = prom(T, l1, l2)
+    # for i in range(len(res[1])):
+    #     print(i)
+    #     for j in res[1][i]:
+    #         print(j)
+    # print(res[0])
 
 
-check(T, l1, l2)
+# check(T, l1, l2)
 
-# runtests(prom)
+runtests(prom)
