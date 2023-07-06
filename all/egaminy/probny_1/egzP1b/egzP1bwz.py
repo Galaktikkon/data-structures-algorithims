@@ -15,8 +15,8 @@ def get_graph(E):
 
 
 def relax(T, v, u, c, e):
-    if T[e][v] > T[e][u]+c:
-        T[e][v] = T[e+1][u]+c
+    if T[e+1][v] > T[e][u]+c:
+        T[e+1][v] = T[e][u]+c
         return True
     return False
 
@@ -25,21 +25,21 @@ def turysta(G, D, L):
     # tutaj proszę wpisać własną implementację
     A = get_graph(G)
     n = len(A)
-    T = [[inf for _ in range(n)] for _ in range(3)]
+    T = [[inf for _ in range(n)] for _ in range(5)]
     Q = PriorityQueue()
     T[0][D] = 0
-    Q.put((T[D], -1, D))
+    Q.put((T[0][D], 0, D))
 
     while not Q.empty():
         w, e, u = Q.get()
-        if u == L:
+        if u == L and e == 4:
             return T[e][u]
-        if e > 2:
+        if e > 3:
             continue
         if w == T[e][u]:
-            for v, c in G[u]:
+            for v, c in A[u]:
                 if relax(T, v, u, c, e):
-                    Q.put((T[e][v], e, v))
+                    Q.put((T[e+1][v], e+1, v))
 
 
 G = [
