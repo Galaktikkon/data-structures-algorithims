@@ -17,18 +17,18 @@ def turysta(G, D, L):
     # tutaj proszę wpisać własną implementację
     A = get_graph(G)
     n = len(A)
-    T_d = [0 for _ in range(n)]
-    T_l = [0 for _ in range(n)]
+    T_d = [inf for _ in range(n)]
+    T_l = [inf for _ in range(n)]
 
     for v in A[D]:
         for u, c in A[v[0]]:
-            T_d[u] = c+v[1]
+            T_d[u] = min(T_d[u], c+v[1])
     for v in A[L]:
         for u, c in A[v[0]]:
-            T_l[u] = c+v[1]
+            T_l[u] = min(T_l[u], c+v[1])
     path_weight = inf
-    for i in range(1, n-1):
-        if T_d[i] != 0 and T_l[i] != 0:
+    for i in range(n):
+        if i != D and i != L:
             path_weight = min(path_weight, T_d[i]+T_l[i])
 
     return path_weight
@@ -44,7 +44,5 @@ G = [
 ]
 D = 0
 L = 6
-
-turysta(G, D, L)
 
 runtests(turysta)
