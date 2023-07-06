@@ -1,4 +1,5 @@
 from egzP1atesty import runtests
+from math import inf
 
 
 def to_morse(W, M):
@@ -18,7 +19,7 @@ M = [('A', '.-'), ('B', '-...'), ('C', '-.-.'), ('D', '-..'), ('E', '.'), ('F', 
      ('Y', '-.--'), ('Z', '--..')]
 
 print(to_morse('SOS', M))
-
+W = 'SOS'
 D = [0, 4, 13, 19, 25]
 
 
@@ -26,16 +27,19 @@ def titanic(W, M, D):
     # tutaj proszę wpisać własną implementację
     morsed = to_morse(W, M)
     n = len(morsed)
-    T = D
-    T.remove(4)
-    T.remove(19)
-    m = len(T)
-    F = [0 for _ in range(n+1)]
+    m = len(D)
+    print(D)
+    # print(morsed)
+    F = [0 for _ in range(n)]
+    F[1] = 1
+    for i in range(1, n):
+        F[i] = n
+        for j in range(m):
+            sign = M[D[j]][1]
+            if i-len(sign) >= 0 and morsed[i-len(sign)+1:i+1] == sign:
+                if F[i-len(sign)]+1 < F[i]:
+                    F[i] = F[i-len(sign)]+1
+    return F[n-1]
 
-    for i in range(1, n+1):
-        for j in range(i-4, i):
-            pass
-    return 0
 
-
-# runtests(titanic, recursion=False)
+runtests(titanic, recursion=False)

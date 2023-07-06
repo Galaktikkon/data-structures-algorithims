@@ -25,7 +25,7 @@ def longestPalin(S):
     return F, max_pal, S[max_i:max_j+1]
 
 
-S = "aaaabbaa"
+S = "aaaaa"
 # S = "abc"
 # S = "ab"
 # S = "a"

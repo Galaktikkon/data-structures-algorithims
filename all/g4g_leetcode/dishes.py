@@ -1,0 +1,3 @@
+
+def maxSatisfaction(satisfaction):
+    pass
