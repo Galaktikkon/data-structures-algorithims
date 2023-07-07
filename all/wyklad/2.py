@@ -31,9 +31,9 @@ def quickSort(A, p, r):  # p - poczatek, r - koniec przedzialu
         quickSort(A, q+1, r)
 
 
-A = [1, 3, 4, 2, 56, 7, 6, 2, 4, 5, 1, 3, 2, 6, 4, 3, 2, 6, 64, 3, 2, 4, 7]
+# A = [1, 3, 4, 2, 56, 7, 6, 2, 4, 5, 1, 3, 2, 6, 4, 3, 2, 6, 64, 3, 2, 4, 7]
 
-quickSort(A, 0, len(A)-1)
+# quickSort(A, 0, len(A)-1)
 
 # print(A)
 
@@ -77,6 +77,9 @@ def select(A, k, p, r):
         return select(A, k, q+1, r)
 
 
-A = [7, 10, 4, 20, 15]
+A = [7, 10, 4, 20, 15, 12, 23, 5, 1, 2, 55, 34, 11, 26, 14, 30, 31, 42]
 
-print(select(A, 1, 0, 4))
+print(select(A, 5, 0, len(A)-1))
+print(A)
+print(select(A, 9, 5, len(A)-1))
+print(A)
