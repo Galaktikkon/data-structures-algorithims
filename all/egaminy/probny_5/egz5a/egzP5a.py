@@ -24,6 +24,4 @@ def inwestor(T):
     return max_sum
 
 
-# inwestor(T)
-
 runtests(inwestor, all_tests=True)

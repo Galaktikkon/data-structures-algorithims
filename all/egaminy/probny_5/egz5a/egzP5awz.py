@@ -6,26 +6,27 @@ T = [2, 1, 5, 6, 2, 3]
 def inwestor(T):
     # tutaj proszę wpisać własną implementację
     n = len(T)
-    F = [0 for _ in range(n)]
-    F[0] = T[0]
-    mi = T[0]
-    i = 0
-    max_sum = T[0]
-    for j in range(1, n):
-        mi = min(mi, T[j])
-        if mi*(j-i+1) > F[j-1]:
-            F[j] = mi*(j-i+1)
-        if T[j] > mi*(j-i+1):
-            F[j] = T[j]
-            mi = T[j]
-            i = j
+    stack = [-1, 0]
+    left = [-1 for _ in range(n)]
+    right = [n for _ in range(n)]
+    result = 0
+    for i in range(1, n):
+        while T[stack[len(stack)-1]] > T[i] and stack[len(stack)-1] != -1:
+            right[stack[len(stack)-1]] = i
+            stack.pop()
+
+        if T[i] == T[i-1]:
+            left[i] = left[i-1]
+
         else:
-            F[j] = F[j-1]
-    print(T)
-    print(F)
+            left[i] = stack[len(stack)-1]
+
+        stack.append(i)
+
+    for i in range(n):
+        result = max(result, (right[i]-left[i]-1)*T[i])
+
+    return result
 
 
-inwestor(T)
-
-
-# runtests(inwestor, all_tests=True)
+runtests(inwestor, all_tests=True)
