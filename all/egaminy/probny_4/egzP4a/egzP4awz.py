@@ -12,8 +12,9 @@ def mosty(T):
             S.append(T[i][1])
         else:
             S[bisect.bisect_left(S, T[i][1])] = T[i][1]
-        print(S)
+        # print(S)
 
     return len(S)
 
-# runtests(mosty, all_tests=True)
+
+runtests(mosty, all_tests=True)
