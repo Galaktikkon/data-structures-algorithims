@@ -1,6 +1,8 @@
 from math import inf
 import bisect
 
+# KNAPSACK
+
 
 def knapsack(W, P, B):
     n = len(W)
@@ -27,6 +29,8 @@ def knapsack(W, P, B):
 
     return F[n-1][B], I
 
+# N^2 LIS
+
 
 def lis(A):
     n = len(A)
@@ -39,6 +43,8 @@ def lis(A):
                 F[i] = F[j]+1
 
     return F, P
+
+# PROM
 
 
 def prom(P, g, d):
@@ -98,6 +104,8 @@ def prom(P, g, d):
     else:
         return board_g
 
+# AUTOSTRADA
+
 
 def autostrada(T, k):
     # Tutaj proszę wpisać własną implementację
@@ -134,6 +142,8 @@ def autostrada(T, k):
 
     return F[0][n-1][k]
 
+# DYWANY
+
 
 def garek(A):
     # Tutaj proszę wpisać własną implementację
@@ -157,6 +167,8 @@ def garek(A):
     f(A, F, 0, n-1)
 
     return F[0][n-1][0]
+
+# NLOG
 
 
 def mosty(T):
