@@ -141,7 +141,7 @@ def MagicFives(A, k):
 
 B = [i for i in range(101)]
 
-# print(MagicFives(B,99))
+# print(MagicFives(B, 99))
 
-for i in range(len(B)):
-    print(MagicFives(B, i), i)
+# for i in range(len(B)-1):
+#     print(MagicFives(B, i), i)
