@@ -4,8 +4,8 @@ def count(coins, N, Sum):
     # beg cond
     for i in range(N+1):
         F[i][0] = 1
-    for s in range(Sum+1):
-        F[0][s] = 1
+    # for s in range(Sum+1):
+    #     F[0][s] = 1
     for s in range(Sum+1):
         if s % coins[0] == 0:
             F[1][s] = 1
@@ -17,10 +17,10 @@ def count(coins, N, Sum):
     return F
 
 
-coins = [3, 2, 1]
-Sum = 4
-coins = [1, 1, 1, 1]
-Sum = 4
+coins = [1, 2, 5]
+Sum = 5
+# coins = [1, 1, 1, 1]
+# Sum = 4
 
 
 def del_dups(A):
@@ -36,4 +36,4 @@ def check(A, s):
     print("number of distinct combinations: ", F[len(A)][s])
 
 
-check(coins, Sum)
+# check(coins, Sum)
