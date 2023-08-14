@@ -22,10 +22,10 @@ def turysta(G, D, L):
 
     for v in A[D]:
         for u, c in A[v[0]]:
-            T_d[u] = min(T_d[u], c+v[1])
+            T_d[u] = min(T_d[u], c+v[1])  # type: ignore
     for v in A[L]:
         for u, c in A[v[0]]:
-            T_l[u] = min(T_l[u], c+v[1])
+            T_l[u] = min(T_l[u], c+v[1])  # type: ignore
     path_weight = inf
     for i in range(n):
         if i != D and i != L:
