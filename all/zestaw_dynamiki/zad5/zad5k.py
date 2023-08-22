@@ -9,7 +9,7 @@ def garek(A):
     F[n-1][n-1] = (A[n-1], 0)
     for i in range(n-1):
         F[i][i] = (A[i], 0)
-        F[i][i+1] = (max(A[i], A[i+1]), min(A[i], A[i+1]))
+        F[i][i+1] = (max(A[i], A[i+1]), min(A[i], A[i+1]))  # type: ignore
 
     def f(A, F, i, j):
         if F[i][j] != (0, 0):
