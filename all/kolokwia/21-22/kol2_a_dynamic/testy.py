@@ -3,13 +3,25 @@
 
 import sys
 
+sys.setrecursionlimit(10000)
+
 TIMER = False
 RERAISE = True
+PRINT_STATUS = False
+USE_STORED_TESTS = False
+SAVE_TESTS = False
+FORCE_ALL_TESTS = False
+
+
 if TIMER:
   from signal import signal, alarm, SIGALRM
 
 from copy import deepcopy
 import time
+
+
+if USE_STORED_TESTS:
+  from STORED_TESTS import STORED_TESTS
 
 
 
@@ -62,9 +74,30 @@ def timeout_handler( signum, frame ):
    raise TimeOut()
 
 
+def internal_runtests( copyarg, printarg, printhint, printsol, check, generate_tests, all_tests, f, ACC_TIME ):
+  passed, timeout, answer, exception = 0, 0, 0, 0
 
-def internal_runtests( copyarg, printarg, printhint, printsol, check, TESTS, f, ACC_TIME ):
-  passed = 0
+
+  if USE_STORED_TESTS:
+    TESTS = STORED_TESTS
+  else:
+    if all_tests or FORCE_ALL_TESTS:
+      TESTS = generate_tests()
+    else:
+      TESTS = generate_tests(3)
+
+
+  if SAVE_TESTS:
+    file = open("STORED_TESTS.py","w")
+    file.write(f"STORED_TESTS = {TESTS}")
+
+  # A - Accepted
+  # T - Timeout
+  # W - Wrong Answer
+  # E - Exception when solving
+  # O - Terminated by operator
+  status_line = ''
+
   total  = len(TESTS)
   total_time = 0
   for i,d in enumerate(TESTS):
@@ -89,26 +122,41 @@ def internal_runtests( copyarg, printarg, printhint, printsol, check, TESTS, f, 
       printsol( sol )
       res = check( *arg2, hint, sol )
       if ACC_TIME > 0 and float(time_e-time_s) > ACC_TIME:
+        timeout += 1
+        status_line += ' T'
         print("!!!!!!!! PRZEKROCZONY DOPUSZCZALNY CZAS")
       elif res:
         passed += 1
+        status_line += ' A'
         print("Test zaliczony!")
       else:
+        answer += 1
+        status_line += ' W'
         print("TEST NIEZALICZONY!!!")
       print("Orientacyjny czas: %.2f sek." % float(time_e-time_s))
         
       total_time += float(time_e-time_s)
     except TimeOut:
+      timeout += 1
+      status_line += ' T'
       print("!!!!!!!! PRZEKROCZONY DOPUSZCZALNY CZAS")
     except KeyboardInterrupt:
+      exception += 1
+      status_line += ' O'
       print("Obliczenia przerwane przez operatora")
     except Exception as e:
+      exception += 1
+      status_line += ' E'
       print("WYJATEK:", e)
       if RERAISE: raise e
     
     
   print("-----------------")
   print("Liczba zaliczonych testów: %d/%d" % (passed,total) )
+  print("Liczba testów z przekroczonym czasem: %d/%d" % (timeout,total) )
+  print("Liczba testów z błędnym wynikiem: %d/%d" % (answer,total) )
+  print("Liczba testów zakończonych wyjątkiem: %d/%d" % (exception,total) )
   print("Orientacyjny łączny czas : %.2f sek." % total_time )
+  print("Status testów:%s" % status_line )
 
-  print_err(sys.argv[0].replace("_"," ").replace(".py",""), passed, total, "%.2f" % total_time)
+  if PRINT_STATUS: print_err(sys.argv[0].replace("_"," ").replace(".py",""), passed, total, "%.2f" % total_time, status_line)
