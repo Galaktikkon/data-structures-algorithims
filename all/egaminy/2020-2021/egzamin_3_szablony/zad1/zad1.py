@@ -22,6 +22,10 @@ def mr(X):
                 G[i] = G[j]+1
                 G_parent[i] = j
 
+    # print(F)
+    # print(F_parent)
+    # print(G)
+
     idx = -1
     longest_mr = 0
     for i in range(n):
@@ -50,6 +54,12 @@ def mr(X):
     get_sol(G, X, G_parent[idx], G_parent)
 
     return sol
+
+
+X = [4, 10, 5, 1, 5, 2, 3, 4]
+# X = [1, 3, 2, 1]
+X = [2, 5, 3, 2, 1, 23, 5, 7, 8, 5, 4, 3, 21, 2, 3, 4, 5, 7, 3]
+# mr(X)
 
 
 runtests(mr)
