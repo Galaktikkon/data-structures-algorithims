@@ -19,8 +19,8 @@ M = [('A', '.-'), ('B', '-...'), ('C', '-.-.'), ('D', '-..'), ('E', '.'), ('F', 
      ('Y', '-.--'), ('Z', '--..')]
 
 # print(to_morse('SOS', M))
-# W = 'SOS'
-# D = [0, 4, 13, 19, 25]
+W = 'SOS'
+D = [0, 4, 13, 19, 25]
 
 
 def titanic(W, M, D):
@@ -29,6 +29,7 @@ def titanic(W, M, D):
     n = len(morsed)
     m = len(D)
     print(D)
+    print(morsed)
     F = [n for _ in range(n+1)]
     F[0] = 1
     F[-1] = 0
@@ -37,8 +38,9 @@ def titanic(W, M, D):
             sign = M[D[j]][1]
             if i-len(sign) >= -1 and morsed[i-len(sign)+1:i+1] == sign:
                 F[i] = min(F[i], F[i-len(sign)]+1)
+    print(F)
     return F[n-1]
 
 
-# print(titanic(W, M, D))
-runtests(titanic, recursion=False)
+print(titanic(W, M, D))
+# runtests(titanic, recursion=False)
