@@ -28,8 +28,8 @@ def titanic(W, M, D):
     morsed = to_morse(W, M)
     n = len(morsed)
     m = len(D)
-    print(D)
-    print(morsed)
+    # print(D)
+    # print(morsed)
     F = [n for _ in range(n+1)]
     F[0] = 1
     F[-1] = 0
@@ -38,9 +38,9 @@ def titanic(W, M, D):
             sign = M[D[j]][1]
             if i-len(sign) >= -1 and morsed[i-len(sign)+1:i+1] == sign:
                 F[i] = min(F[i], F[i-len(sign)]+1)
-    print(F)
+    # print(F)
     return F[n-1]
 
 
-print(titanic(W, M, D))
-# runtests(titanic, recursion=False)
+# print(titanic(W, M, D))
+runtests(titanic, recursion=False)
