@@ -78,5 +78,5 @@ def printList(p):
         p = p.next
 
 
-printList(sortH(a, 1))
-# runtests(sortH)
+# printList(sortH(a, 1))
+runtests(sortH)
