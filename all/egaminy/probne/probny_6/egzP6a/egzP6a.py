@@ -55,7 +55,7 @@ def google(H, s):
         P.append((H[i], d, l))
     i = select(P, s-1, 0, n-1)
 
-    return i[0]
+    return i[0]  # type: ignore
 
 
 # print(google(H, s))
