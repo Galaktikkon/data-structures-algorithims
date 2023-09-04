@@ -9,7 +9,7 @@ def partition(A, p, r):
 
     for j in range(p, r):
         if A[j][1] == x[1]:
-            if A[j][2] >= x[2]:
+            if A[j][2] > x[2]:
                 i += 1
                 A[j], A[i] = A[i], A[j]
         elif A[j][1] > x[1]:
