@@ -1,54 +1,52 @@
 # Marek Małek, 414880
-# Podejście dynamiczne, ale nie udało się w implementacji. Funkcja f(i,b) jest funkcją minimum po opcjach lotu do planety i z nieokreśloną
-# ilością paliwa i dotankowanie, aby mieć b oraz dojścia do planety pośredniej j, z której bierzemy teleport i tankujemy do b.
-# Odczytanie rozwiązania to przejście po wszystkich możliwych wartościach paliwa, będąc na ostatniej planecie.
+
+# Podejście dynamiczne.
+
+# Warunek bazowy:
+# koszt jaki musimy poniesc za b jednostek paliwa na planecie A (czyli i=0),
+# to oczywiscie po prostu koszt tankowania b jednostek paliwa za cenę paliwa na startowej planecie (czyli b*C[0]).
+
+# Sytuacja ogólna dla i-tej planety:
+# Będąc na i-tej planecie koszt posiadania b jednostek paliwa, to jest minimum z dotankowania do b jednostek paliwa albo
+# podroz z poprzedniej planety gdzie posiadalismy b+D[i]-D[i-1] jednostek paliwa (czyli mielsimy nadwyzke b ton paliwa nad
+# kosztem dotarcia do i-tej planety z poprzedniej planety). Warto zwrócić uwagę, że tak naprawdę f(i,b) to minimalny koszt jaki
+# nalezy poniesc bedąc przy i-tej planecie z b tonami paliwa - w ten sposób łatwiej zrozumieć dlaczego możemy się odwoływać tylko
+# do poprzedniej planety, a nie sprawdzać możliwe koszty za b+D[i]-D[j] paliwa przy poprzednich planetach, gdzie są one
+# z zakresu j: (0<=j<i). W ten sposób po prostu patrzymy jaki jest koszt b ton paliwa przy i-1-planecie i obliczamy koszt jaki nalezy
+# poniesc przelatujac dystans miedzy i-1 planeta a i-ta (D[i]-D[i-1]).
+
+# Ostatni przypadek, to ten kiedy nie mamy paliwa przy i-tej planecie:
+# W tym wypadku dodatkowo rozwazamy uzycie teleportu i aktualizujemy koszt posiadania 0 ton paliwa przy planecie p,
+# do ktorej moze nas zaprowadzic teleport.
+
+# Wynikiem jest koszt jaki poniesiemy będąc przy n-1 planecie (planeta B), jednocześnie posiadając 0 ton paliwa. (F[n-1][0])
+
+# Złożoność czasowa: O(nE)
+
 
 from egz1btesty import runtests
 from math import inf
 
-D = [0, 1, 4, 6, 7, 10, 11, 12, 13, 15, 16]
-C = [2, 6, 2, 10, 2, 10, 4, 6, 8, 8, 4]
-T = [(0, 0), (5, 8), (2, 0), (7, 10), (10, 6), (10, 26),
-     (10, 6), (10, 2), (8, 0), (9, 0), (10, 2)]
-E = 5
-
-D = [0, 5, 10, 20]
-C = [2, 1, 3, 9]
-T = [(2, 3), (3, 7), (2, 10), (3, 10)]
-E = 10
-
 
 def planets(D, C, T, E):
     # tu prosze wpisac wlasna implementacje
-    result = inf
     n = len(D)
     F = [[inf for _ in range(E+1)] for _ in range(n)]
-    F[0][0] = 0
+
     for i in range(E+1):
         F[0][i] = C[0]*i
+
     for i in range(n):
         for b in range(E+1):
-            for j in range(i):
-                tp = inf
-                if T[i][0] == i:
-                    tp = T[i][1]
-                to_fly = inf
-                if D[i]+b < E+1:
-                    to_fly = F[i-1][D[i]+b]
-                else:
-                    to_fly = F[i][b-1]+C[i]
-                F[i][b] = min(to_fly+b*C[i], tp+F[j][b]+b*C[i])
+            if D[i]-D[i-1]+b <= E and i > 0:
+                F[i][b] = min(F[i][b], F[i-1][D[i]-D[i-1]+b])
+            if b > 0:
+                F[i][b] = min(F[i][b-1]+C[i], F[i][b])
+            if b == 0 and T[i][0] != i:
+                F[T[i][0]][0] = min(F[T[i][0]][0], T[i][1]+F[i][0])
 
-    for i in F:
-        print(i)
+    return F[n-1][0]
 
-    # odczytanie rozwiazania
-    for i in range(E+1):
-        result = min(F[n-1][i], result)
-    return result
-
-
-print(planets(D, C, T, E))
 
 # zmien all_tests na True zeby uruchomic wszystkie testy
-# runtests(planets, all_tests=False)
+runtests(planets, all_tests=True)
