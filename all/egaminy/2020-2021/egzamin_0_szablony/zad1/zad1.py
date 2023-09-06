@@ -26,7 +26,8 @@ def tanagram(x, y, t):
     y_arr = counting_sort(y_arr, 26, 0)
 
     for i in range(n):
-        if x_arr[i][0] != y_arr[i][0] or abs(x_arr[i][1]-y_arr[i][1]) > t: # type: ignore
+        # type: ignore
+        if x_arr[i][0] != y_arr[i][0] or abs(x_arr[i][1]-y_arr[i][1]) > t:
             return False
 
     return True
