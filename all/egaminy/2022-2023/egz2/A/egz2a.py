@@ -7,7 +7,8 @@
 # ile jest takich x-ów w tablicy P.
 
 # Finalnie przechodzę jeszcze raz po tablicy (już posortowanej) i obliczam ile dany punkt dominuje innych punktów:
-# Jest to pozycja i w posortowanej tablicy (tablica posortowana oznaczona jest jako S, wtedy sortowanie daje nam potencjalną siłę punktu, ale musimy ją skorygować)
+# Jest to pozycja i w posortowanej tablicy (tablica posortowana oznaczona jest jako S, wtedy sortowanie daje nam potencjalną siłę punktu,
+# ale musimy ją skorygować)
 # z odjęciem liczby punktów o współrzędnej y większej od aktualnie rozważanej
 # (+1 bo nie wliczamy aktualnie rozważanej krotki) oraz odjęcia liczby punktów o tej
 # samej współrzędnej x (+1 tak analogicznie jak w poprzednim zdaniu). Po potencjalnym zmianie najsilniejszego punktu odejmuję liczbę
@@ -58,9 +59,8 @@ def dominance(P):
 
     sol = -1
     for i in range(n-1, -1, -1):
-        sol = max(sol, i-Y[S[i][1]]+1-X[S[i][0]]+1)
-        X[S[i][0]] -= 1
-
+        sol = max(sol, i-Y[S[i][1]]+1-X[S[i][0]]+1)  # type: ignore
+        X[S[i][0]] -= 1  # type: ignore
     return sol
 
 
