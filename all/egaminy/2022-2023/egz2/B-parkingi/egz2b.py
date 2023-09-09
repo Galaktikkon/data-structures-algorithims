@@ -20,12 +20,11 @@ from egz2btesty import runtests
 def parking(X, Y):
     # tu prosze wpisac wlasna implementacje
     from math import inf
+    X.append(0)
+    Y.append(0)
     n = len(X)
     m = len(Y)
     F = [[-1 for _ in range(m)] for _ in range(n)]
-
-    for j in range(m):
-        F[0][j] = abs(X[0]-Y[j])
 
     def f(F, X, Y, i, j):
         if F[i][j] != -1:
@@ -47,11 +46,7 @@ def parking(X, Y):
 
         return res
 
-    sol = inf
-    for j in range(m):
-        sol = min(sol, f(F, X, Y, n-1, j))
-
-    return sol
+    return f(F, X, Y, n-1, m-1)
 
 
 # zmien all_tests na True zeby uruchomic wszystkie testy
