@@ -1,4 +1,4 @@
-# Marek Małek, 414880
+# Marek Małek
 
 # Rozwiązanie dynamiczne.
 

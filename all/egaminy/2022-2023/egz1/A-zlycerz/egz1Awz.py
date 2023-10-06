@@ -1,4 +1,4 @@
-# Marek Małek, 414880
+# Marek Małek
 # Zauwazamy, ze aby obliczyc koszt jaki trzeba uiscic za dotarcie do potencjalnego zamku i dalszy przejazd od niego
 # do zamku docelowego, mozemy uzyc dwoch wywolan Dijkstry. Pierwsze wywolanie z zamku s, aby otrzymac koszt normalnego przejscia
 # do zamku okradanego oraz drugie z zamku t, ale juz z uwzglednieniem lapowek i podwojonego kosztu za ucieczke. W ten sposob mamy dwa

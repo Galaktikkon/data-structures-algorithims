@@ -1,4 +1,4 @@
-# Marek Małek, 414880
+# Marek Małek
 
 # W algorytmie używam sortowania przez zliczanie, bo znany jest nam przedział danych i w ten sposób jest to sortowanie prawdziwie
 # liniowe (=Theta(n+k), gdzie k=n, więc jest to Theta(2n)=Theta(n)). Sortuję punkty względem pierwszej zmiennej.

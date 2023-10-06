@@ -1,4 +1,4 @@
-# Marek Małek, 414880
+# Marek Małek
 # Algorytm opiera się na wielokrotnym użyciu algorytmu dijkstry. Na początku używamy zwykłej wersji, żeby wyznaczyć najkrotsze
 # sciezki do zamków. Następnie z każdego zamku używamy go ponownie, ale z założeniem, że okradamy ten zamek oraz uwzględnieniem
 # podwojonego kosztu za drogi i kosztu łapówki, aby przedostać się do innych zamków. W ten sposób otrzymujemy koszt dotarcia do zamku
